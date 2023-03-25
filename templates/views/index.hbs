@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/css/output.css" rel="stylesheet" />
+    <title>WeatherStats</title>
+  </head>
+  <body class="bg-black">
+    <div class="grid md:grid-cols-3 main-div">
+      <!---Side Bar-->
+      <div class="sidebar md:col-span-1 px-3 py-5">
+        <form class="flex items-center relative pt-5">
+          <input
+            class="rounded-3xl w-full h-9 p-2"
+            type="text"
+            id="search-places"
+            placeholder="Search by city name"
+          />
+          <button class="btn text-gray-300 absolute top-6 right-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              fill="currentColor"
+              class="bi bi-search text-black"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </button>
+        </form>
+        <div class="current-weather-image pt-8 text-white">
+          <div class="weather-icon flex justify-center">
+            {{!-- Icon will be added Dynamically --}}
+          </div>
+        </div>
+        <div class="temperature bg-neutral-900 rounded-md text-white">
+          <h1 id="temp-condition" class="px-2 py-14 text-4xl font-bold">0°C</h1>
+        </div>
+        <div class="current-date mt-5 flex text-white">
+          <p id="current-date-details"></p>
+          <p id="timeElement" class="px-2"> 00:00</p>
+        </div>
+        <div class="weather-condition mt-5 text-white">
+          <div class="weather-condition-text">
+            <p>pending...</p>
+          </div>
+        </div>
+        <div class="rain-prediction mt-5 text-white">
+          <div class="rain-prediction-text">
+            <p>Status Pending - 0%</p>
+          </div>
+        </div>
+        <div
+          class="location-image bg-indigo-600 mt-4 flex justify-center rounded-md text-white"
+        >
+          <p class="px-5 py-8">Please enter a city name first...</p>
+        </div>
+      </div>
+      <!---Side Bar-->
+
+      <!-------Highlight Section----->
+      <div class="highlight-section">
+        <div class="highlight-section-header font-medium text-lg p-4 w-20">
+          <p class="border-b-4 border-black rounded-sm">Week</p>
+        </div>
+
+        <div class="weekly-forecast">
+          <div class="weekcard">
+            <div class="day">
+              <p id="day1">Day 1</p>
+            </div>
+            <div class="day-weather-icon1 xs:flex xs:justify-center">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max1" class="text-lg">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min1" class="text-sm text-gray-400" >0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day2">Day 2</p>
+            </div>
+            <div class="day-weather-icon2 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp flex items-center ">
+              <div class="max">
+                <p id="max2" class="text-lg">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min2" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day3">Day 3</p>
+            </div>
+            <div class="day-weather-icon3 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max3" class="text-xl">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min3" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day4">Day 4</p>
+            </div>
+            <div class="day-weather-icon4 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max4" class="text-lg">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min4" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day5">Day 5</p>
+            </div>
+            <div class="day-weather-icon5 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max5" class="text-lg">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min5" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day6">Day 6</p>
+            </div>
+            <div class="day-weather-icon6 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max6" class="text-lg">0°</p>
+              </div>
+              <div class="min ml-1 mt-2 mb-2">
+                <p id="min6" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+          <div class="weekcard">
+            <div class="day">
+              <p id="day7">Day 7</p>
+            </div>
+            <div class="day-weather-icon7 day-icons">
+              {{!-- Icon will be added Dynamically --}}
+            </div>
+            <div class="day-temp">
+              <div class="max">
+                <p id="max7" class="text-xl">0°</p>
+              </div>
+              <div class="min  ml-1 mt-2 mb-2">
+                <p id="min7" class="text-sm text-gray-400">0°</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-------Todays highlight-->
+        <div class="todays-highlight-header font-medium text-lg mt-5">
+          <p class="p-4">Today's Highlights</p>
+        </div>
+        <!-------Todays highlight-->
+
+        <!-------Highlight Container------>
+        <div class="highlight-container">
+          <div class="highlight-cards">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">UV-Index</p>
+            </div>
+            <div class="uv-index-value flex justify-center">
+              <p class="text-3xl">0</p>
+            </div>
+          </div>
+          <div class="highlight-cards">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">Wind status</p>
+            </div>
+            <div class="wind-value flex justify-center">
+              <p class="text-3xl">0 km/h</p>
+            </div>
+          </div>
+          <div class="highlight-cards">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">Sunrise & Sunset</p>
+            </div>
+            <div class="sun-section">
+              <div class="sunrise flex items-center px-2 mt-1">
+                <div class="sunrise-image">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-sunrise mr-2"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7.646 1.146a.5.5 0 0 1 .708 0l1.5 1.5a.5.5 0 0 1-.708.708L8.5 2.707V4.5a.5.5 0 0 1-1 0V2.707l-.646.647a.5.5 0 1 1-.708-.708l1.5-1.5zM2.343 4.343a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"
+                    />
+                  </svg>
+                </div>
+                <div class="sunrise-time">
+                  <p class="text-lg">00:00 AM/PM</p>
+                </div>
+              </div>
+              <div class="sunset flex items-center px-2 mt-4">
+                <div class="sunset-image">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-sunset mr-2"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7.646 4.854a.5.5 0 0 0 .708 0l1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V1.5a.5.5 0 0 0-1 0v1.793l-.646-.647a.5.5 0 1 0-.708.708l1.5 1.5zm-5.303-.51a.5.5 0 0 1 .707 0l1.414 1.413a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .706l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"
+                    />
+                  </svg>
+                </div>
+                <div class="sunset-time">
+                  <p class="text-lg">00:00 AM/PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-cards" id="uv-index">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">Humidity</p>
+            </div>
+            <div class="humidity-value flex justify-center">
+              <p class="text-3xl">0%</p>
+            </div>
+            <div class="humidity-status">
+              <p class="text-xs px-3 mb-3 font-medium">Status pending...</p>
+            </div>
+          </div>
+          <div class="highlight-cards" id="uv-index">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">Visibility</p>
+            </div>
+            <div class="visibility-value flex justify-center">
+              <p class="text-3xl">0 KM</p>
+            </div>
+            <div class="visibility-status">
+              <p class="text-xs px-3 mb-3 font-medium">Status pending...</p>
+            </div>
+          </div>
+          <div class="highlight-cards" id="temperature">
+            <div class="highlight-card-heading">
+              <p class="px-2 pt-2 text-lg font-medium">Temperature</p>
+            </div>
+            <div class="temp-wrapper">
+              <div class="max-temp-section flex items-center px-2">
+                <div class="max-temp-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-thermometer-high"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"
+                    />
+                    <path
+                      d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"
+                    />
+                  </svg>
+                </div>
+                <div class="max-temp-value">
+                  <p class="text-xl">0℃</p>
+                </div>
+              </div>
+              <div class="min-temp-section flex items-center px-2 mt-5">
+                <div class="min-temp-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-thermometer"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                    <path
+                      d="M8 0a2.5 2.5 0 0 0-2.5 2.5v7.55a3.5 3.5 0 1 0 5 0V2.5A2.5 2.5 0 0 0 8 0zM6.5 2.5a1.5 1.5 0 1 1 3 0v7.987l.167.15a2.5 2.5 0 1 1-3.333 0l.166-.15V2.5z"
+                    />
+                  </svg>
+                </div>
+                <div class="min-temp-value">
+                  <p class="text-xl">0℃</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-----Highlight Container---->
+      </div>
+    </div>
+    <!-------Highlight Section----->
+    <script src="./js/index.js"></script>
+  </body>
+</html>
